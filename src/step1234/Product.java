@@ -8,6 +8,8 @@ public class Product {
     String description; //상품 설명
     int stock;  //상품 재고
 
+    public Product() {}  //인수가 없는 기본 생성자
+
     public Product(String productName, String price, String description, int stock) {
         this.productName = productName;
         this.price = price;
@@ -26,6 +28,11 @@ public class Product {
 
     public ArrayList<Product> getProductMembers() {
         return products;
+    }
+
+    @Override
+    public String toString() {  //toString 오버라이드를 하지 않으면 List 출력시 주소값 출력 됨 + 출력 양식
+        return productName + " | " + price + "원 | " +  description;
     }
 
 
