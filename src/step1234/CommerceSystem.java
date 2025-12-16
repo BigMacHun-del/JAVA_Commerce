@@ -13,7 +13,7 @@ public class CommerceSystem {
 
     public void start(){  //기본 상품 출력
         Scanner sc = new Scanner(System.in);
-        do {
+        while(true) {
             System.out.println("[ 실시간 커머스 플랫폼 메인 ]");
             for(int i = 0; i < category.categoryName.size(); i++){
                 System.out.println(i+1 + ". " + category.categoryName.get(i));
@@ -24,27 +24,26 @@ public class CommerceSystem {
             switch(menuNumber){
                 case 0:
                     System.out.println("커머스 플랫폼을 종료합니다.");
-                    break;
+                    System.exit(0);
                 case 1:
                     category.categoryProducts(menuNumber);   //메뉴에 맞는 상품 출력
                     productNum = sc.nextInt();
                     category.choseProduct(productNum);  //상품 선택 메서드
+                    break;
                 case 2:
                     category.categoryProducts(menuNumber);
                     productNum = sc.nextInt();
                     category.choseProduct(productNum);
+                    break;
                 case 3:
                     category.categoryProducts(menuNumber);
                     productNum = sc.nextInt();
                     category.choseProduct(productNum);
+                    break;
                 default:
-
+                    System.out.println("잘못된 입력입니다.");
             }
-
-
-
-        }while(menuNumber==0);
-
+        }
 
     }
 

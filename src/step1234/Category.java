@@ -20,7 +20,7 @@ public class Category {
     }
 
     public void categoryProducts(int menuNumber) {  //메뉴 번호 입력 시 해당 메뉴 출력
-        System.out.println("[ " + categoryName.get(menuNumber+1) + " 카테고리 ]");
+        System.out.println("[ " + categoryName.get(menuNumber-1) + " 카테고리 ]");
         for (int i = 0; i < products.size(); i++) {
             System.out.println((i+1) + ". " +   products.get(i));
         }
@@ -28,10 +28,12 @@ public class Category {
     }
 
     public void choseProduct(int productNum) {  //선택한 상품 출력 메서드
-        System.out.println("선택한 상품: " + products.get(productNum-1) + "| 재고: " + products.get(productNum).stock + "개");
+        if (productNum == 0) {
+            System.out.println("뒤로가기");
+        } else if (productNum <= products.size()) {  //저장되어 있는 상품 범위 내
+            System.out.println("선택한 상품: " + products.get(productNum-1) + "| 재고: " + products.get(productNum).stock + "개 \n");
+        } else {
+            System.out.println("입력 오류");
+        }
     }
-
-//    public String getCategoryName() {
-//        return categoryName;
-//    }
 }
