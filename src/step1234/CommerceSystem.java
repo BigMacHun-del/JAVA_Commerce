@@ -13,7 +13,7 @@ public class CommerceSystem {
         basicProduct.add(new Product("AirPods Pro", "350,000", "노이즈 캔슬링 무선 이어폰", 20));
     }
 
-    public void start(){  //기본 메뉴 출력
+    public void start(){  //기본 상품 출력
         for (int i = 0; i < basicProduct.size(); i++) {
             System.out.println((i+1) + ". " +   basicProduct.get(i));
         }
