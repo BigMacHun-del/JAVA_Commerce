@@ -45,9 +45,19 @@ public class CommerceSystem {
                         category.choseProduct(productNum, cart);
                         break;
                     case 4:
-                        System.out.println("아래와 같이 주문 하시겠습니까? \n");
-                        System.out.println("[ 장바구니 내역 ]");
                         cart.showCart();
+                        System.out.println("\n[ 총 주문 금액 ]");
+                        System.out.println(cart.getTotalAmount() + "원 \n");
+
+                        System.out.println("1. 주문 확정     2. 메인으로 돌아가기");
+                        int input = sc.nextInt();
+                        if(input == 1){
+                            cart.completeOrder();
+                        } else if (input == 2) {
+                            System.out.println("메인화면으로 돌아갑니다.");
+                            break;
+                        }
+
 //                case 5:
 //                    //장바구니 상품 들어있으면 주문 취소 기능
                 }
