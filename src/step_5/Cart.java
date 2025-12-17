@@ -3,6 +3,9 @@ package step_5;
 // 장바구니 관리 클래스
 //  - addCartItem(): 상품 추가 시 재고 확인 및 중복 상품 수량 업데이트
 //  - cartIsEmpty(): 장바구니가 비어있는지 확인
+//  - showCart(): 장바구니 목록 및 총 금액 출력
+//  - getTotalAmount(): 총 금액 계산
+//  - completeOrder(): 주문 완료 시 재고 차감 및 장바구니 초기화
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -38,5 +41,11 @@ public class Cart {
 
     public boolean cartIsEmpty() {  //장바구니가 비어있는지 확인
         return items.isEmpty();
+    }
+
+    public void showCart() {
+        for (int i = 0; i < items.size(); i++) {
+            System.out.println(items.get(i));
+        }
     }
 }
