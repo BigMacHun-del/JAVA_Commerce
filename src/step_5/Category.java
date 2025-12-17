@@ -38,7 +38,7 @@ public class Category {
         if (productNum == 0) {
             System.out.println("뒤로가기");
         } else if (productNum <= products.size()) {  //저장되어 있는 상품 범위 내
-            System.out.println("선택한 상품: " + products.get(productNum-1) + " | 재고: " + products.get(productNum).getStock() + "개 \n");
+            System.out.println("선택한 상품: " + products.get(productNum-1) + " | 재고: " + products.get(productNum-1).getStock() + "개 \n");
             System.out.println("위 상품을 장바구니에 추가하시겠습니까?");
             System.out.println("1. 확인       아무 숫자: 취소");
             int choice = sc.nextInt();
@@ -47,9 +47,11 @@ public class Category {
                     System.out.print("수량 입력: ");
                     int quantity = sc.nextInt();
                     cart.addCartItem(products.get(productNum-1), quantity);
+                } else {
+                    System.out.println("장바구니 추가 취소 \n");
                 }
             } catch (Exception e){
-                System.out.println("숫자를 입력하세요.");
+                System.out.println("올바른 숫자를 입력하세요.");
             }
         } else {
             System.out.println("입력 오류");
