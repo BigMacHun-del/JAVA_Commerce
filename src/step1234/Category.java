@@ -37,7 +37,7 @@ public class Category {
         if (productNum == 0) {
             System.out.println("뒤로가기");
         } else if (productNum <= products.size()) {  //저장되어 있는 상품 범위 내
-            System.out.println("선택한 상품: " + products.get(productNum-1) + "| 재고: " + products.get(productNum).stock + "개 \n");
+            System.out.println("선택한 상품: " + products.get(productNum-1) + "| 재고: " + products.get(productNum).getStock() + "개 \n");
         } else {
             System.out.println("입력 오류");
         }
