@@ -1,11 +1,13 @@
 package step_5;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Category {
     //Product 클래스를 관리하는 클래스
     private ArrayList<Product> products = new ArrayList<>();
     private ArrayList<String> categoryName =  new ArrayList<>();
+    private Scanner sc = new Scanner(System.in);
 
     //캡슐화 List 게터 세터
     public ArrayList<Product> getProducts() {return products;}
@@ -32,11 +34,23 @@ public class Category {
         System.out.println("0. 뒤로가기");
     }
 
-    public void choseProduct(int productNum) {  //선택한 상품 출력 메서드
+    public void choseProduct(int productNum, Cart cart) {  //선택한 상품 출력 메서드
         if (productNum == 0) {
             System.out.println("뒤로가기");
         } else if (productNum <= products.size()) {  //저장되어 있는 상품 범위 내
-            System.out.println("선택한 상품: " + products.get(productNum-1) + "| 재고: " + products.get(productNum).getStock() + "개 \n");
+            System.out.println("선택한 상품: " + products.get(productNum-1) + " | 재고: " + products.get(productNum).getStock() + "개 \n");
+            System.out.println("위 상품을 장바구니에 추가하시겠습니까?");
+            System.out.println("1. 확인       아무 숫자: 취소");
+            int choice = sc.nextInt();
+            try {
+                if (choice == 1) {
+                    System.out.print("수량 입력: ");
+                    int quantity = sc.nextInt();
+                    cart.addCartItem(products.get(productNum-1), quantity);
+                }
+            } catch (Exception e){
+                System.out.println("숫자를 입력하세요.");
+            }
         } else {
             System.out.println("입력 오류");
         }
