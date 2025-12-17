@@ -15,8 +15,8 @@ public class CommerceSystem {
         Scanner sc = new Scanner(System.in);
         while(true) {
             System.out.println("[ 실시간 커머스 플랫폼 메인 ]");
-            for(int i = 0; i < category.categoryName.size(); i++){
-                System.out.println(i+1 + ". " + category.categoryName.get(i));
+            for(int i = 0; i < category.getCategoryName().size(); i++){
+                System.out.println(i+1 + ". " + category.getCategoryName().get(i));
             }
             System.out.println("0. 종료       | 프로그램 종료");
             menuNumber = sc.nextInt();

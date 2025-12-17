@@ -5,8 +5,14 @@ import java.util.Scanner;
 
 public class Category {
     //Product 클래스를 관리하는 클래스
-    ArrayList<Product> products = new ArrayList<>();
-    ArrayList<String> categoryName =  new ArrayList<>();
+    private ArrayList<Product> products = new ArrayList<>();
+    private ArrayList<String> categoryName =  new ArrayList<>();
+
+    //캡슐화 List 게터 세터
+    public ArrayList<Product> getProducts() {return products;}
+    public void setProducts(ArrayList<Product> products) {this.products = products;}
+    public ArrayList<String> getCategoryName() {return categoryName;}
+    public void setCategoryName(ArrayList<String> categoryName) {this.categoryName = categoryName;}
 
     public Category() {  //상품 내용과 카테고리 이름 생성
         products.add(new Product("Galaxy S25", "1,200,000", "최신 안드로이드 스마트폰", 20));
