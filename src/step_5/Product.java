@@ -27,7 +27,7 @@ public class Product {
 
     @Override
     public String toString() {  //toString 오버라이드를 하지 않으면 List 출력시 주소값 출력 됨 + 출력 양식
-        return productName + " | " + price + "원 | " +  description;
+        return productName + " | " + price + "원 | " +  description + " | 재고: " + stock;
     }
 
 
