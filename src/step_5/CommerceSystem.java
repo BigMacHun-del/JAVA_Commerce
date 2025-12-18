@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class CommerceSystem {
     Category category =  new Category();
     Cart cart = new Cart();
+    Manager manager = new Manager();
 
     public void start(){  //기본 상품 출력
         int menuNumber, productNum; // 메뉴 번호, 상품 번호 변수
@@ -21,6 +22,7 @@ public class CommerceSystem {
                     System.out.println("4. 장바구니 확인");
                 }
                 System.out.println("5. 주문 취소");  //주문 취소 기능을 사용하기 위해 장바구니 목록이 없더라도 출력으로 변경
+                System.out.println("6. 관리자 모드");
                 System.out.println("0. 종료       | 프로그램 종료");
                 menuNumber = sc.nextInt();
 
@@ -30,16 +32,19 @@ public class CommerceSystem {
                         System.exit(0);
                     case 1:  //전자제품
                         category.categoryProducts(menuNumber);   //메뉴에 맞는 상품 출력
+                        printBack();
                         productNum = sc.nextInt();
                         category.choseProduct(productNum, cart);  //상품 선택 메서드
                         break;
                     case 2:  //의류
                         category.categoryProducts(menuNumber);
+                        printBack();
                         productNum = sc.nextInt();
                         category.choseProduct(productNum, cart);
                         break;
                     case 3:  //식품
                         category.categoryProducts(menuNumber);
+                        printBack();
                         productNum = sc.nextInt();
                         category.choseProduct(productNum, cart);
                         break;
@@ -72,6 +77,9 @@ public class CommerceSystem {
                             System.out.println("메인 화면으로");
                             break;
                         }
+                    case 6:  //관리자 모드
+                        manager.managerMenu();
+                        break;
                     default:
                         System.out.println("해당 메뉴에 보이는 번호를 입력해주세요.");
                 }
@@ -79,6 +87,10 @@ public class CommerceSystem {
         }catch (Exception e){
             System.out.println("올바른 숫자를 입력하세요." + e.getMessage());
         }
+    }
+
+    public void printBack(){  //코드 재사용성을 위해 출력문 따로 빼기
+        System.out.println("0. 뒤로가기");
     }
 
 }
