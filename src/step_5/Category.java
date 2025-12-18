@@ -11,7 +11,6 @@ public class Category {
 
     //캡슐화 List 게터 세터
     public ArrayList<Product> getProducts() {return products;}
-    public void setProducts(ArrayList<Product> products) {this.products = products;}
     public ArrayList<String> getCategoryName() {return categoryName;}
     public void setCategoryName(ArrayList<String> categoryName) {this.categoryName = categoryName;}
     //public int getProductsStock(int i) {return products.get(i).getStock();}  //매니저 클래스에서 재고 확인 게터

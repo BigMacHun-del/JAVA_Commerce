@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Manager {
     Scanner sc = new Scanner(System.in);
-    //Category category = new Category();
+    //Category category = new Category();  --> 매개변수로 이미 사용되고 있는 객체를 사용해야함
 
     public void managerMenu(Category category) {
         int missCount = 0;
@@ -60,8 +60,54 @@ public class Manager {
     }
 
     public void addProduct(Category category) {
-        category.addProduct();
+        System.out.println("어느 카테고리에 상품을 추가하시겠습니까?");
+        for (int i = 0; i<3; i++){
+            System.out.println(i+1 + ". " + category.getCategoryName().get(i));
+        }
+        int categoryNum = sc.nextInt();
+        sc.nextLine();
+        String selectcategoryName = category.getCategoryName().get(categoryNum - 1);
+
+        System.out.println("[ " +  selectcategoryName + "카테고리에 상품 추가 ]");
+        System.out.print("상품명을 입력해주세요: ");
+        String productName = sc.nextLine();
+
+        //중복 상품명 검증(같은 카테고리 내에서)
+        for (Product product : category.getProducts()) { //상품 클래스를 반복하며 현재 객체의 카테고리를 찾고, 상품 명 비교
+            if (productName.equals(selectcategoryName) &&  product.getProductName().equals(productName)) {
+                System.out.println("이미 해당 카테고리에 동일한 이름의 상품이 있습니다");
+                return;
+            }
+        }
+
+        System.out.print("가격을 입력해주세요: ");
+        String price = sc.nextLine();
+
+        System.out.print("설명을 입력해주세요: ");
+        String description = sc.nextLine();
+
+        System.out.print("재고수량을 입력해주세요: ");
+        int stock = sc.nextInt();
+        sc.nextLine();
+
+        Product newProduct = new Product(productName, price, description, stock);
+        System.out.println(newProduct);
+        System.out.println("위 정보로 상품을 추가하시겠습니까?");
+        System.out.println("1. 확인     아무 키: 취소");
+        String choice = sc.nextLine();
+        if (choice.equals("1")) {
+            category.getProducts().add(newProduct);  //추가 완료
+            System.out.println("상품이 성공적으로 추가되었습니다!");
+        } else{
+            System.out.println("상품 추가가 취소 되었습니다.");
+        }
     }
+
+//    public ArrayList<T> addProductScan(){
+//        ArrayList<T> scanList = new ArrayList<>();
+//        System.out.print("상품명을 입력해주세요: ");
+//        scanList.add();
+//    }
 
     public void updateProduct(){
 
