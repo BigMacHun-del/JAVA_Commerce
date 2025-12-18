@@ -22,6 +22,7 @@ public class Manager {
                 System.out.println("0. 메인으로 돌아가기");
 
                 int meunNum = sc.nextInt();
+                sc.nextLine();
                 switch(meunNum){
                     case 0:
                         break;
@@ -29,7 +30,7 @@ public class Manager {
                         addProduct(category);
                         break;
                     case 2:
-                        //상품 수정
+                        updateProduct(category);
                         break;
                     case 3:
                         //상품 삭제
@@ -109,8 +110,64 @@ public class Manager {
 //        scanList.add();
 //    }
 
-    public void updateProduct(){
+    public void updateProduct(Category category) {
+        //상품 명 입력 받고, 수정할 항목(가격, 설명, 재고 수량) 입력받고, 해당하는 수정 창 현재 정보 -> 수정할 정보 출력하고 수정 완료 메시지
 
+        System.out.println("수정할 상품명을 입력해주세요: ");
+        String productName = sc.nextLine();
+        boolean selectToken = false;   //상품을 찾았는지 못찾았는지 반환
+
+        Product selectProduct = null;   //수정할 상품 데이터 저장
+        for (Product product : category.getProducts()) {
+            if (productName.equals(product.getProductName())) {
+                selectProduct = product;
+                System.out.println("현재 상품 정보: " +  selectProduct + "\n");
+                selectToken = true;
+
+                updateMethod(selectProduct, productName);
+            }
+        }
+        if (!selectToken) {
+            System.out.println("입력하신 상품을 찾을 수 없습니다.");
+        }
+    }
+
+    public void updateMethod (Product selectProduct , String productName) { //메소드가 너무 길어져 분리
+        System.out.println("수정할 항목을 선택해주세요: ");
+        System.out.println("1. 가격 \n 2. 설명 \n 3. 재고수량");
+        int input = sc.nextInt();
+        sc.nextLine();
+
+        switch (input) {
+            case 1:
+                System.out.println("현재 가격: " + selectProduct.getPrice() + "원");
+                String beforePrice = selectProduct.getPrice();  //수정 전 값 저장
+                System.out.println("새로운 가격을 입력해주세요: ");
+                int afterPrice = sc.nextInt();
+                String afterPriceStr = String.format("%,d", afterPrice);   //int를 String 000,000,000 형식 변환
+
+                selectProduct.setPrice(afterPriceStr);
+                System.out.println(productName + "의 가격이" + beforePrice + "원 -> " + afterPriceStr + "원으로 수정되었습니다.");
+                break;
+            case 2:
+                System.out.println("현재 상품 설명: " + selectProduct.getDescription());
+                String beforeDescription = selectProduct.getDescription();
+                System.out.println("새로운 상품 설명을 입력해주세요: ");
+                String afterDescription = sc.nextLine();
+
+                selectProduct.setDescription(afterDescription);
+                System.out.println(productName + "의 상품 설명이 " + beforeDescription + " -> " + afterDescription + "으로 수정되었습니다.");
+                break;
+            case 3:
+                System.out.println("현재 재고수량: " + selectProduct.getStock());
+                int beforeStock = selectProduct.getStock();
+                System.out.println("새로운 재고수량을 입력해주세요: ");
+                int afterStock = sc.nextInt();
+                selectProduct.setStock(afterStock);
+                System.out.println(productName + "의 재고수량이 " + beforeStock + " -> " + afterStock + "으로 수정되었습니다.");
+                break;
+
+        }
     }
 
     public void removeProduct(){

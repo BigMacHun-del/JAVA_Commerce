@@ -20,6 +20,7 @@ public class Category {
         products.add(new Product("iPhone 16", "1,350,000", "Apple의 최신 스마트폰", 40));
         products.add(new Product("MacBook Pro", "2,400,000", "M3 칩셋이 탑재된 노트북", 50));
         products.add(new Product("AirPods Pro", "350,000", "노이즈 캔슬링 무선 이어폰", 20));
+        products.add(new Product("test", "350,000", "노이즈 캔슬링 무선 이어폰", 20));
 
         categoryName.add("전자제품");
         categoryName.add("의류");
