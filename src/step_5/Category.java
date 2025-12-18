@@ -59,5 +59,9 @@ public class Category {
         }
     }
 
+    public void addProduct() {
+        products.add(new Product("Galaxy S33", "1,500,000", "최신 안드로이드 스마트폰", 44));
+    }
+
 
 }

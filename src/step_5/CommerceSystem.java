@@ -78,7 +78,7 @@ public class CommerceSystem {
                             break;
                         }
                     case 6:  //관리자 모드
-                        manager.managerMenu();
+                        manager.managerMenu(category);
                         break;
                     default:
                         System.out.println("해당 메뉴에 보이는 번호를 입력해주세요.");
