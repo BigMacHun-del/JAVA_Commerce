@@ -40,8 +40,8 @@ public class Manager {
                         System.out.println("[ 전체 상품 현황 ]");
 
                         /*TODO: Category 클래스에서는 되는데 같은 함수인데도 재고량 갱신이 안됨 -> 해결완료
-                        아마도 Category 클래스에서는 ArrayList로 받고 이 클래슨느 Category 그자체 객체에 담으니까 다른 객체로 인식하는 듯
-                        --> 위 의심이 맞았고, 매개변수로 Category 객체를 받아 값을 전달해주었음.
+                         * 아마도 Category 클래스에서는 ArrayList로 받고 이 클래슨느 Category 그자체 객체에 담으니까 다른 객체로 인식하는 듯
+                         * --> 위 의심이 맞았고, 매개변수로 Category 객체를 받아 값을 전달해주었음.
                          */
                         category.categoryProducts(1);
                         System.out.println();
@@ -71,10 +71,14 @@ public class Manager {
         System.out.print("상품명을 입력해주세요: ");
         String productName = sc.nextLine();
 
-        /// TODO: 검증 안됨
+        /* TODO: 검증 안됨
+        *   Category 클래스에 카테고리를 저장하는 변수가 없음 / 카테고리와 상품명을 동시에 비교 해야함
+        *   productName.equals(selectCategoryName) && 조건에 일단 뺐음
+        *   이 조건 마저도 이름과 카테고리를 비교하는 비정상적인 코드임
+        * */
         //중복 상품명 검증(같은 카테고리 내에서)
         for (Product product : category.getProducts()) { //상품 클래스를 반복하며 현재 객체의 카테고리를 찾고, 상품 명 비교
-            if (productName.equals(selectCategoryName) &&  product.getProductName().equals(productName)) {
+            if (product.getProductName().equals(productName)) {
                 System.out.println("이미 해당 카테고리에 동일한 이름의 상품이 있습니다");
                 return;
             }
