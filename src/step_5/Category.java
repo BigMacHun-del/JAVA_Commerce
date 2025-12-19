@@ -2,6 +2,7 @@ package step_5;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Category {
     //Product 클래스를 관리하는 클래스
@@ -29,10 +30,39 @@ public class Category {
 
     public void categoryProducts(int menuNumber) {  //메뉴 번호 입력 시 해당 메뉴 출력 -> 관리자 메뉴에서 다시 쓸 수 있는데 메뉴 출력문 때문에 못 씀.(재사용성 문제)
         System.out.println("[ " + categoryName.get(menuNumber-1) + " 카테고리 ]");
-        for (int i = 0; i < products.size(); i++) {
-            System.out.println((i+1) + ". " +   products.get(i));
+        System.out.println("1. 전체 상품 보기");
+        System.out.println("2. 가격대별 필터링 (100만원 이하)");
+        System.out.println("3. 가격대별 필터링 (100만원 초과)");
+        System.out.println("0. 뒤로가기");
+
+        Scanner sc = new Scanner(System.in);
+        int input = sc.nextInt();
+        sc.nextLine();
+        switch (input) {
+            case 1:
+                System.out.println("[ " + categoryName.get(menuNumber-1) + " 전체 상품 목록 ]");
+                AtomicInteger number1 = new AtomicInteger(1); // 자동으로 반복이 끝나면 1씩 증가하게 됨
+                products.stream().forEach(product ->  System.out.println(number1.getAndIncrement() + ". " + product));
+                break;
+            case 2:
+                System.out.println("[ " + categoryName.get(menuNumber-1) + " 100만원 이하 상품 목록 ]");
+                AtomicInteger number2 = new AtomicInteger(1);
+                products.stream()
+                        .filter(product ->  Integer.parseInt(product.getPrice().replace(",", "")) <= 1000000)
+                        .forEach(product ->  System.out.println(number2.getAndIncrement() + ". " + product));
+                break;
+            case 3:
+                System.out.println("[ " + categoryName.get(menuNumber-1) + " 100만원 초과 상품 목록 ]");
+                AtomicInteger number3 = new AtomicInteger(1);
+                products.stream()
+                        .filter(product ->  Integer.parseInt(product.getPrice().replace(",", "")) > 1000000)
+                        .forEach(product ->  System.out.println(number3.getAndIncrement() + ". " + product));
+                break;
+            case 0:
+                break;
+            default:
+                System.out.println("올바른 숫자를 입력해주세요.");
         }
-        // System.out.println("0. 뒤로가기"); -> 재사용하기 위해서 따로 뺌
     }
 
     public void choseProduct(int productNum, Cart cart) {  //선택한 상품 출력 메서드
