@@ -60,41 +60,20 @@ public class Cart {
         return totalStr;
     }
 
-    public void completeOrder(CustomerRank rank) {
+    public void completeOrder(){
+
         orderItems.clear();
         for (CartItem item : items) {
             orderItems.add(new CartItem(item.getProduct(), item.getQuantity()));
         }
 
-        System.out.println("주문이 완료되었습니다!");
-        String total = getTotalAmount();
-        String discountPrice = rank.discountPrice(total);  //할인 된 가격 반환
-
-
-        System.out.println("할인 전 금액: " + total + "원");
-        System.out.println(rank + " 등급 할인(" + rank.getDiscountRate() +"%): -" + discountPrice + "원");
-        System.out.println("최종 결제 금액: " + strCalculate(total, discountPrice, 2) + "원");
-
+        System.out.println("주문이 완료되었습니다! 총 금액: " + getTotalAmount());
         for (CartItem item : items) {
             System.out.println(item.getProduct().getProductName() + " 재고가 " + item.getStockBeforeOrder() + "개 -> " + item.getProduct().getStock() + "개로 업데이트 되었습니다.");
         }
 
         items.clear();  //장바구니 초기화
     }
-
-    public String strCalculate(String a, String b, int c) {  //문자열 사칙연산 함수
-        int a1 = Integer.parseInt(a.replace(",", ""));
-        int b1 = Integer.parseInt(b.replace(",", ""));
-        int result = 0;
-        if (c == 1){result = a1 + b1;}
-        else if (c == 2){result = a1 - b1;}
-        else if (c == 3){result = a1 * b1;}
-        else if (c == 4){result = a1 / b1;}
-
-        String resultStr = String.format("%,d", result);
-        return resultStr;
-    }
-
 
     public void cancelOrder(){
         if (orderItems.isEmpty()) {

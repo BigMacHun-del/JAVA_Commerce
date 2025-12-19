@@ -6,7 +6,6 @@ public class CommerceSystem {
     Category category =  new Category();
     Cart cart = new Cart();
     Manager manager = new Manager();
-    Customer customer = new Customer();
 
     public void start(){  //기본 상품 출력
         int menuNumber, productNum; // 메뉴 번호, 상품 번호 변수
@@ -54,11 +53,11 @@ public class CommerceSystem {
                             cart.showCart();
                             System.out.println("\n[ 총 주문 금액 ]");
                             System.out.println(cart.getTotalAmount() + "원 \n");
+
                             System.out.println("1. 주문 확정     2. 메인으로 돌아가기");
                             int input = sc.nextInt();
                             if(input == 1){
-                                CustomerRank rank = customer.searchCustomerRank();
-                                cart.completeOrder(rank);
+                                cart.completeOrder();
                                 break;
                             } else if (input == 2) {
                                 System.out.println("메인화면으로 돌아갑니다.");
