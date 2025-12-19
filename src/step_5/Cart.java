@@ -9,10 +9,31 @@ import java.util.ArrayList;
 //  - getTotalAmount(): 총 금액 계산
 //  - completeOrder(): 주문 완료 시 재고 차감 및 장바구니 초기화
 //  - cancelOrder(): 주문 취소 시 주문 했던 상품 재고량 복구
+//  - deleteCartItem(): 장바구니에 들어있는 상품 삭제
 
 public class Cart {
     ArrayList<CartItem> items = new ArrayList<>();  //리스트 객체 생성
     ArrayList<CartItem> orderItems = new ArrayList<>();  //item.claer 연산으로 주문내역이 사라지므로 주문 내역을 저장하기 위한 리스트
+
+    public void deleteCartItem(String productName) {
+//        for (CartItem item : items) {
+//            if (item.getProduct().getProductName().equals(productName)) {
+//                System.out.println(item.getProduct().getProductName() + "을 장바구니에서 삭제합니다.");
+//                items.remove(item);
+//            }else {
+//                System.out.println("해당 상품은 장바구니에 없는 상품입니다.");
+//            }
+//        }  스트림을 쓰지 않은 경우
+        CartItem deleteItem = items.stream()
+                .filter(item -> item.getProduct().getProductName().equals(productName))
+                .findFirst() //필터링 된 결과중 첫 번째 요소를 저장
+                .orElse(null); //그렇지 않으면 null 저장
+        if(deleteItem == null){
+            System.out.println("해당 상품은 장바구니에 없는 상품입니다.");
+        }
+        System.out.println(deleteItem.getProduct().getProductName() + "을(를) 장바구니에서 삭제합니다.");
+        items.remove(deleteItem);
+    }
 
     public void addCartItem(Product product, int quantity) {  //상품 정보들과 수량을 매개변수로 장바구니 추가
         //남은 재고가 없는 경우
@@ -95,7 +116,6 @@ public class Cart {
         return resultStr;
     }
 
-
     public void cancelOrder(){
         if (orderItems.isEmpty()) {
             System.out.println("주문내역이 없습니다");
@@ -113,7 +133,5 @@ public class Cart {
             product.setStock(afterOrderStock + item.getQuantity());   //주문으로 차감된 재고량의 주문 수량 더하기
             System.out.println(product.getProductName() +" 재고가 " + afterOrderStock + "개 -> " +  product.getStock() + "개로 업데이트 되었습니다.");
         }
-
-
     }
 }
