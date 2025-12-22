@@ -93,7 +93,7 @@ public class CommerceSystem {
                 }
             }
         }catch (Exception e){
-            System.out.println("올바른 숫자를 입력하세요." + e.getMessage());
+            System.out.println("올바른 숫자를 입력하세요. 오류 메시지: " + e.getMessage());
         }
     }
 

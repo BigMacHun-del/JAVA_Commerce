@@ -25,15 +25,20 @@ public class Customer {
             index++;
         }
         Scanner sc = new Scanner(System.in);
-        int choice = sc.nextInt();
-        sc.nextLine();
-        if(choice == 1){rank = CustomerRank.BRONZE;}
-        else if(choice == 2){rank = CustomerRank.SILVER;}
-        else if(choice == 3){rank = CustomerRank.GOLD;}
-        else if(choice == 4){rank = CustomerRank.PLATINUM;}
-        else {System.out.println("올바른 숫자를 입력해주세요"); }
-
-        return rank;
+        try {
+            while(true){
+                int choice = sc.nextInt();
+                sc.nextLine();
+                if(choice == 1){rank = CustomerRank.BRONZE; break;}
+                else if(choice == 2){rank = CustomerRank.SILVER; break;}
+                else if(choice == 3){rank = CustomerRank.GOLD; break;}
+                else if(choice == 4){rank = CustomerRank.PLATINUM; break;}
+                else {System.out.println("올바른 숫자를 입력해주세요"); }
+            }
+            return rank;
+        } catch (NullPointerException e) {
+            return CustomerRank.BRONZE;   //기본값 브론즈
+        }
     }
 
     //각 요소 게터 세터

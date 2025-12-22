@@ -1,6 +1,5 @@
 package step_5;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Manager {

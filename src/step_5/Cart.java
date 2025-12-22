@@ -23,7 +23,7 @@ public class Cart {
 //            }else {
 //                System.out.println("해당 상품은 장바구니에 없는 상품입니다.");
 //            }
-//        }  스트림을 쓰지 않은 경우
+//        }  --> 스트림을 쓰지 않은 경우
         CartItem deleteItem = items.stream()
                 .filter(item -> item.getProduct().getProductName().equals(productName))
                 .findFirst() //필터링 된 결과중 첫 번째 요소를 저장
